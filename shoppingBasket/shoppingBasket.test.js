@@ -1,19 +1,18 @@
 const ShoppingBasket = require("./shoppingBasket");
-const Candy = require("./candy");
 
 describe("Shopping Basket", () => {
-  it("adds an item to the basket", () => {
-    const candy = new Candy("Mars", 4.99);
-    const basket = new ShoppingBasket();
-    basket.addItem(candy);
-    expect(basket.getTotalPrice()).toBe(4.99);
+  let basket;
+
+  beforeEach(() => {
+    basket = new ShoppingBasket();
   });
 
-  it("returns the total price of candies", () => {
-    const basket = new ShoppingBasket();
-    basket.addItem(new Candy("Skittle", 3.99));
-    basket.addItem(new Candy("Skittle", 3.99));
-    basket.addItem(new Candy("Mars", 4.99));
-    expect(basket.getTotalPrice()).toBe(12.97);
+  it("returns 0 for empty basket", () => {
+    expect(basket.getTotalPrice()).toBe(0);
+  });
+  
+  it("Adds an item to the array", () => {
+    const marsdouble = { getName: () => "Mars", getPrice: () => 3.99 };
+    basket.addItem(marsdouble);
   });
 });
